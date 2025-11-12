@@ -2,7 +2,7 @@ from collections.abc import Callable, Awaitable
 import asyncio as aio
 
 async def link(*args,return_exceptions=True):
-    # it's redundant to evaulate sync functions here so it assumes all callables hold awaitables.
+    # it's redundant to evaluate sync functions here so it assumes all callables hold awaitables.
     todo={i:arg() if isinstance(arg,Callable) else arg for i,arg in enumerate(args) if isinstance(arg,(Callable,Awaitable))}
     if len(todo)>0:
         fin=await aio.gather(*todo.values(),return_exceptions=return_exceptions)
