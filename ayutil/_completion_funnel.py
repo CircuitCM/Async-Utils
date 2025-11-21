@@ -1,8 +1,7 @@
 import asyncio as aio
-from inspect import isasyncgenfunction
 from typing import Union
 import time as t
-from warnings import deprecated
+import warnings
 
 
 async def _r_delay(afunc,delay:float):
@@ -54,7 +53,15 @@ async def completion_funnel(gen:aiter,timeout=None):
     while cont[0] or todo or not done.empty():
         #have to await these
         yield await _wait_for_one()
-        
+
+
+def deprecated(f):
+    def g(*a, **k):
+        warnings.warn(f.__name__ + " is deprecated",
+                      DeprecationWarning, 2)
+        return f(*a, **k)
+    return g
+     
 
 @deprecated
 def delayed_round_robin(gen:Union[aiter,iter],delay:float=0.1,batch:int=1,isasync:bool=True):

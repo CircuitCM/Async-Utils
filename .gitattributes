@@ -1,2 +1,2 @@
-*.ipynb linguist-documentation
-# *.ipynb linguist-detectable=false
+# *.ipynb linguist-documentation
+*.ipynb linguist-detectable=false

@@ -1,7 +1,6 @@
 from concurrent import futures
 import asyncio as aio
 import itertools
-from typing import Callable
 from functools import partial
 
 
